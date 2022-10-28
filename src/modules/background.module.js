@@ -4,7 +4,7 @@ import {random} from '../utils'
 export class BackgroundModule extends Module {
   constructor() {
     super('bg-color', 'Поменять цвет фона')
-    this.body = document.querySelector('.menu')
+    this.body = document.querySelector('body')
   }
 
   changeColor() {
@@ -20,7 +20,7 @@ export class BackgroundModule extends Module {
 
   render() {
     // test
-    document.addEventListener('click', this.changeColor)
+    document.addEventListener('click', () => this.changeColor())
     
     this.toHTML()
   }
