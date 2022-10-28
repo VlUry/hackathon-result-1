@@ -25,12 +25,11 @@ export class ClicksModule extends Module {
   #createTimer(container) {
     const timer = document.createElement('h1')
     timer.className = 'clicksCounter-timer'
-    timer.innerHTML = `0:0${this.time}`
     container.append(timer)
   }
 
   #createClicks(container) {
-    const clicks = document.createElement('h3')
+    const clicks = document.createElement('h1')
     clicks.className = 'clicksCounter-clicks'
     clicks.innerHTML = 'Кликов: 0'
     container.append(clicks)
@@ -46,11 +45,15 @@ export class ClicksModule extends Module {
         
         this.counting = true
         let count = 0
+        let timeNum = this.time
 
         document.addEventListener('click', () => count++)
 
-        for (let i = this.time; i >= 0; i--) {
-          SetTimeout(() => timer.innerHTML = `0:0${i}`, 1000 * i)
+        for (let i = 0; i <= this.time; i++) {
+          setTimeout(() => {
+            timer.innerHTML = `0:0${timeNum}`
+            timeNum-- 
+          }, 1000 * i)
         }
 
         setTimeout(() => {
@@ -62,8 +65,7 @@ export class ClicksModule extends Module {
     })
   }
 
-  render() {
-    // test
+  trigger() {
     this.#counter()
   }
 }

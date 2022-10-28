@@ -1,6 +1,11 @@
+import { ContextMenu } from './menu'
 import './styles.css'
 import { ClicksModule } from './modules/clicks.module'
 
-// test
-const mod1 = new ClicksModule(3)
-mod1.render()
+const menu = new ContextMenu('#menu')
+
+// Добавление модулей в будущее контекстное меню
+menu.add(new ClicksModule(3))
+
+// Формирование html для контекстного меню
+menu.render()
