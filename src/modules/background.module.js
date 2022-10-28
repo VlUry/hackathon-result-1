@@ -2,8 +2,8 @@ import {Module} from '../core/module'
 import {random} from '../utils'
 
 export class BackgroundModule extends Module {
-  constructor() {
-    super('bg-color', 'Поменять цвет фона')
+  constructor(type, text) {
+    super(type, text)
     this.body = document.querySelector('body')
   }
 
