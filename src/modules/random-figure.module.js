@@ -7,10 +7,7 @@ export class RandomFigureModule extends Module {
   }
 
   #createRandomFigure() {
-    const randomFigureCheck = document.querySelector("#random-figure");
-    if (randomFigureCheck) {
-      randomFigureCheck.remove();
-    }
+    randomFigureCheck();
     const randomFigure = document.createElement("div");
     randomFigure.style.position = "absolute";
     const { innerWidth: windWidth, innerHeight: windHeight } = window;
@@ -28,6 +25,9 @@ export class RandomFigureModule extends Module {
     randomFigure.style.top = `${random(10, randomFigureTopMax)}px`;
 
     document.body.append(randomFigure);
+    randomFigure.animate([{ opacity: "0" }, { opacity: "1" }], {
+      duration: 800,
+    });
   }
   trigger() {
     this.#createRandomFigure();
@@ -47,7 +47,13 @@ function makeClipPath() {
       clipPathStr += ` ${random(0, 100)}%`;
     }
   }
-  // clipPathStr -= ",";
   clipPathStr += ")";
   return clipPathStr;
+}
+
+function randomFigureCheck() {
+  const randomFigure = document.querySelector("#random-figure");
+  if (randomFigure) {
+    randomFigure.remove();
+  }
 }
