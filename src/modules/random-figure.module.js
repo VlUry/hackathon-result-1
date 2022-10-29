@@ -49,6 +49,5 @@ function makeClipPath() {
   }
   // clipPathStr -= ",";
   clipPathStr += ")";
-  console.log(clipPathStr);
   return clipPathStr;
 }
