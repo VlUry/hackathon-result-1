@@ -2,12 +2,11 @@ import { random } from "../utils";
 import { Module } from "../core/module";
 
 export class RandomFigureModule extends Module {
-  constructor() {
-    super("random-figure", "Создать рандомную фигуру");
-    this.body = document.body;
+  constructor(type, text) {
+    super(type, text);
   }
 
-  createRandomFigure() {
+  trigger() {
     const randomFigureCheck = document.querySelector("#random-figure");
     if (randomFigureCheck) {
       randomFigureCheck.remove();
