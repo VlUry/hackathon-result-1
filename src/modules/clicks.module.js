@@ -12,18 +12,19 @@ export class ClicksModule extends Module {
   // Метод для создания таймера
   #createTimer() {
     const timer = document.createElement('h1')
-    timer.className = 'clicksCounter-timer'
+    timer.className = 'clicks-counter__timer'
     timer.style.position = 'absolute'
     timer.style.top = '1rem'
     timer.style.right = '1rem'
-    this.body.append(timer)
+    return timer
   }
 
   // Метод для создания счетчика кликов
-  #createClicks(clicksCount) {
-    const clicks = document.createElement('h1')
-    clicks.className = 'clicksCounter-clicks'
-    clicks.innerHTML = `Кликов: ${clicksCount}`
+  #createClicksCounter(clicksCount) {
+    const clicks = document.createElement('div')
+    clicks.className = 'clicks-counter__clicks'
+    clicks.innerHTML = `<h1>Кликов: ${clicksCount}</h1>`
+    clicks.innerHTML += '<h4>Клик, чтобы удалить</h4>'
     clicks.style.position = 'absolute'
     clicks.style.top = '1rem'
     clicks.style.right = '1rem'
@@ -31,7 +32,9 @@ export class ClicksModule extends Module {
     this.body.append(clicks)
 
     // Чтобы убрать счетчик, когда не нужен. Можно подоформить, пока идей нет
-    clicks.addEventListener('click', () => clicks.remove())
+    clicks.addEventListener('click', () => {
+      clicks.remove()
+    })
   }
 
   #counter() {
@@ -39,13 +42,13 @@ export class ClicksModule extends Module {
     if (!this.counting) {
 
       // Если предыдущий счетчик не убран, убирает
-      if (document.querySelector('.clicksCounter-clicks')) {
-        const clicks = document.querySelector('.clicksCounter-clicks')
-        clicks.remove()
+      const clicksCounter = document.querySelector('.clicks-counter__clicks')
+      if (clicksCounter) {
+        clicksCounter.remove()
       }
 
-      this.#createTimer()
-      const timer = document.querySelector('.clicksCounter-timer')
+      const timer = this.#createTimer()
+      this.body.append(timer)
 
       this.counting = true
       let count = 0
@@ -66,8 +69,10 @@ export class ClicksModule extends Module {
       // Происходящее, по истечении таймера
       setTimeout(() => {
         timer.remove()
-        this.#createClicks(count - 1) // -1 потому, что нажатие на старт таймера идет в счет
+        this.#createClicksCounter(count - 1) // -1 потому, что нажатие на старт таймера идет в счет
         this.counting = false
+        document.removeEventListener('click', () => count++)
+        document.removeEventListener('dblclick', () => count++)
       }, 1000 * timeNum)
     }
   }
