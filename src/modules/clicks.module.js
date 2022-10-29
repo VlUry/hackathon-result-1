@@ -53,6 +53,7 @@ export class ClicksModule extends Module {
 
       // Счетчик кликов
       document.addEventListener('click', () => count++)
+      document.addEventListener('dblclick', () => count++)
 
       // Отсчет таймера
       for (let i = 0; i <= this.time; i++) {
