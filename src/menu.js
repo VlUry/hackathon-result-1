@@ -18,7 +18,7 @@ export class ContextMenu extends Menu {
       // Формирование html для модулей
       this.modules.forEach(module => {
         const menuItem = module.toHTML()
-        this.el.insertAdjacentHTML('beforeend', menuItem)
+        this.el.insertAdjacentElement('beforeend', menuItem)
       })
     }
 
