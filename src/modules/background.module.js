@@ -1,5 +1,5 @@
-import {Module} from '../core/module'
-import {random} from '../utils'
+import { Module } from '../core/module'
+import { random } from '../utils'
 
 export class BackgroundModule extends Module {
   constructor(type, text) {
@@ -19,6 +19,9 @@ export class BackgroundModule extends Module {
   }
 
   trigger() {
-    this.#changeColor()
+    return this.promise(
+      this.#changeColor.bind(this),
+      0
+    )
   }
 }
