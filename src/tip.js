@@ -14,8 +14,18 @@ export default function renderTip() {
     });
     tip.textContent = "Нажмите ПКМ для открытия контекстного меню";
     document.body.append(tip);
-    sessionStorage.setItem("tipChecked", "true");
-    tip.addEventListener("click", () => tip.remove())
-    document.body.addEventListener("auxclick", () => tip.remove(), {once: true});
+    document.body.addEventListener(
+      "auxclick",
+      () => {
+        tip.animate([{ opacity: "1" }, { opacity: "0" }], {
+          duration: 500,
+        });
+        setTimeout(() => {
+          tip.remove();
+        }, 500);
+        sessionStorage.setItem("tipChecked", "true");
+      },
+      { once: true }
+    );
   }
 }
