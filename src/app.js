@@ -6,6 +6,7 @@ import { RandomFigureModule } from "./modules/random-figure.module";
 import { CustomMessageModule } from "./modules/custom.message";
 import { RainingCatsModule } from "./modules/raining-cats.module";
 import { PaintingModule } from "./modules/painting.module";
+import renderTip from "./tip";
 
 const menu = new ContextMenu("#menu");
 
@@ -25,3 +26,5 @@ menu.add(
 
 // Формирование html для контекстного меню
 menu.render();
+
+renderTip();
