@@ -1,4 +1,4 @@
-import {Module} from '../core/module'
+import { Module } from '../core/module'
 
 export class ClicksModule extends Module {
   constructor(type, text, time) {
@@ -62,7 +62,7 @@ export class ClicksModule extends Module {
       for (let i = 0; i <= this.time; i++) {
         setTimeout(() => {
           timer.innerHTML = `0:0${timeNum}`
-          timeNum-- 
+          timeNum--
         }, 1000 * i)
       }
 
@@ -78,6 +78,9 @@ export class ClicksModule extends Module {
   }
 
   trigger() {
-    this.#counter()
+    return this.promise(
+      this.#counter.bind(this),
+      1000 * this.time
+    )
   }
 }

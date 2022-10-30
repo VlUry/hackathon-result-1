@@ -29,8 +29,13 @@ export class RandomFigureModule extends Module {
       duration: 800,
     });
   }
+
   trigger() {
-    this.#createRandomFigure();
+    return this.promise(
+      this.#createRandomFigure.bind(this),
+      0
+    )
+
   }
 }
 

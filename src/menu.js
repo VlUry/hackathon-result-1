@@ -17,7 +17,7 @@ export class ContextMenu extends Menu {
     if (doModulesExist) {
       // Формирование html для модулей
       this.modules.forEach(module => {
-        const menuItem = module.toHTML()
+        const menuItem = module.el
         this.el.insertAdjacentElement('beforeend', menuItem)
       })
     }
@@ -73,16 +73,22 @@ export class ContextMenu extends Menu {
     const { target } = event
 
     const isMenuItem = target.classList.contains('menu-item')
-    if (isMenuItem) {
+    const isAvailable = !target.classList.contains('unavailable')
+
+    if (isMenuItem && isAvailable) {
       const { type } = event.target.dataset
 
       // Поиск нужного модуля по атрибуту data-type
       // Вызов у модуля метода с логикой его действия
       const module = this.modules
         .find(module => module.type === type)
-      module.trigger()
-    }
 
-    this.close()
+      // Снятие доступа с модуля и возвращение доступа после завершения действия
+      module.toggleAvailability()
+      module.trigger()
+        .finally(() => module.toggleAvailability())
+
+      this.close()
+    }
   }
 }

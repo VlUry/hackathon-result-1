@@ -4,9 +4,11 @@ export class CustomMessageModule extends Module {
   constructor(type, text, messageText) {
     super(type, text)
     this.messageText = messageText
+
+    this.time = 5000
   }
 
-  trigger() {
+  createMessage() {
     const customMessage = document.createElement('div')
     customMessage.className = 'custom-message';
     customMessage.textContent = this.messageText;
@@ -15,7 +17,13 @@ export class CustomMessageModule extends Module {
 
     setTimeout(function () {
       customMessage.remove();
-    }, 5000);
+    }, this.time);
+  }
 
+  trigger() {
+    return this.promise(
+      this.createMessage.bind(this),
+      this.time
+    )
   }
 }

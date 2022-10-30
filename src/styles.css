@@ -34,12 +34,21 @@ body {
   font-size: 1rem;
   color: #eee;
   cursor: pointer;
-  transition: background-color .2s ease-in;
+  transition: all .2s ease-in;
   border-radius: inherit;
 }
 
 .menu .menu-item:hover {
   background: #343434;
+}
+
+.menu .menu-item.unavailable {
+  cursor: default;
+  opacity: .5;
+}
+
+.menu .menu-item.unavailable:hover {
+  background: inherit;
 }
 
 .custom-message {
