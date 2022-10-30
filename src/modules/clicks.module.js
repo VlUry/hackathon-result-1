@@ -59,11 +59,9 @@ export class ClicksModule extends Module {
       document.addEventListener("dblclick", incriaseCountDbl);
 
       function incriaseCount() {
-        console.log("это я клик");
         return ++count;
       }
       function incriaseCountDbl() {
-        console.log("Это я дабл клик");
         countDbl++;
         count -= 2;
         return countDbl;

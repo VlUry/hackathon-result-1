@@ -26,13 +26,14 @@ export class PaintingModule extends Module {
       if (prevImg) {
         prevImg.remove();
       }
-      const bgbg = canvas.toDataURL("image/png", 1.0);
+      const bgImage = canvas.toDataURL("image/png", 1.0);
       document.body.style.background = "no-repeat center";
       document.body.style.backgroundSize = "contains";
-      document.body.style.backgroundImage = `url(${bgbg}) `;
+
+      document.body.style.backgroundColor = document.body.dataset.bgColor;
+      document.body.style.backgroundImage = `url(${bgImage}) `;
       container.remove();
       this.open = false;
-      console.log(bgbg);
     });
   }
 
@@ -142,7 +143,11 @@ export class PaintingModule extends Module {
   }
 
   trigger() {
-    this.#createPaintingBlock();
+    return this.promise(
+      this.#createPaintingBlock.bind(this),
+      0
+    )
+
   }
 }
 

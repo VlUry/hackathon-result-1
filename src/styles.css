@@ -166,6 +166,7 @@ body {
   left: 0;
   height: 5px;
   background-color: purple;
+}
 
 .menu .menu-item.unavailable {
   cursor: default;
