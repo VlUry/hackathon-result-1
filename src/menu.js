@@ -78,8 +78,6 @@ export class ContextMenu extends Menu {
     const isMenuItem = target.classList.contains("menu-item");
     const isAvailable = !target.classList.contains("unavailable");
 
-    console.log(isMenuItem, isAvailable);
-
     if (isMenuItem && isAvailable) {
       const { type } = event.target.dataset;
 
