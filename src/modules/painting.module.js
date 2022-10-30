@@ -139,6 +139,18 @@ export class PaintingModule extends Module {
       this.#renderApplyButton(paintingContainer);
       this.#renderClearingButton();
       this.#renderCanvas();
+
+      document.body.addEventListener('auxclick', this.#onAuxClick.bind(this), {
+        once: true
+      })
+    }
+  }
+
+  #onAuxClick() {
+    const container = document.querySelector(".painting-container");
+    if (container) {
+      this.open = false
+      container.remove()
     }
   }
 
