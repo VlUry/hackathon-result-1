@@ -1,23 +1,21 @@
 import { Module } from "../core/module";
 
-export class CustomMessage extends Module {
-	constructor(type, text) {
-		super(type, text)
-		this.type = 'Создать случайное сообщение';
-		this.text = 'Добро пожаловать!';
-	}
+export class CustomMessageModule extends Module {
+  constructor(type, text, messageText) {
+    super(type, text)
+    this.messageText = messageText
+  }
 
-	trigger() {
-		const customMessage = document.createElement('div')
-		customMessage.className = 'message-custom';
-		customMessage.textContent = this.text;
+  trigger() {
+    const customMessage = document.createElement('div')
+    customMessage.className = 'custom-message';
+    customMessage.textContent = this.messageText;
 
-		document.body.append(customMessage);
+    document.body.append(customMessage);
 
-		setTimeout(function () {
-			customMessage.remove();
-		}, 5000);
+    setTimeout(function () {
+      customMessage.remove();
+    }, 5000);
 
-	}
+  }
 }
-
