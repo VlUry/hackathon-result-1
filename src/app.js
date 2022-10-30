@@ -5,6 +5,7 @@ import { ClicksModule } from "./modules/clicks.module";
 import { RandomFigureModule } from "./modules/random-figure.module";
 import { CustomMessageModule } from "./modules/custom.message";
 import { RainingCatsModule } from "./modules/raining-cats.module";
+import { PaintingModule } from "./modules/painting.module";
 
 const menu = new ContextMenu("#menu");
 
@@ -18,7 +19,8 @@ menu.add(
     "Создать сообщение",
     "Всем привет!"
   ),
-  new RainingCatsModule("raining-cats", "Создать дождь из котов", 15)
+  new RainingCatsModule("raining-cats", "Создать дождь из котов", 15),
+  new PaintingModule('painting', 'Создать рисунок')
 );
 
 // Формирование html для контекстного меню

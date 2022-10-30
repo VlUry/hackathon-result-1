@@ -1,4 +1,4 @@
-import { random } from "../utils";
+import { getRandomColor, random } from "../utils";
 import { Module } from "../core/module";
 
 export class RandomFigureModule extends Module {
@@ -24,7 +24,7 @@ export class RandomFigureModule extends Module {
     randomFigure.style.width = `${randomFigureWidth}px`;
     randomFigure.style.height = `${randomFigureHeight}px`;
 
-    randomFigure.style.backgroundColor = "#FA8072";
+    randomFigure.style.backgroundColor = getRandomColor();
     randomFigure.style.clipPath = makeClipPath();
     randomFigure.id = "random-figure";
     const randomFigureLeftMax = windWidth - randomFigureWidth - 10;
