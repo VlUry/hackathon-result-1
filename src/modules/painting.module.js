@@ -21,10 +21,15 @@ export class PaintingModule extends Module {
     const applyPainting = document.querySelector("#apply");
     applyPainting.addEventListener("click", () => {
       const canvas = document.querySelector("canvas");
+      const prevImg = document.querySelector("img");
+      if (prevImg) {
+        prevImg.remove();
+      }
       const bgImage = new Image();
       bgImage.src = canvas.toDataURL();
       bgImage.style.width = "100%";
       bgImage.style.height = "100%";
+      bgImage.style.zIndex = "-1";
       document.body.append(bgImage);
       container.remove();
       this.open = false;
@@ -91,18 +96,18 @@ export class PaintingModule extends Module {
                 </div>
               </div>
             </div>
-            <div class='painting-el'>
+          <div class='painting-el'>
             <div class='circle'>
-            <input type='color' id='colors' class='colors-input'>
-            <label for='colors' class='colors'></label>
-          </div>
+              <input type='color' id='colors' class='colors-input'>
+              <label for='colors' class='colors'></label>
+            </div>
           </div>
           <div class='painting-el'>
-          <div class='circle'>
-          <input type='color' id='colors-border' class='colors-input-border'>
-          <label for='colors-border' class='colors-border'></label>
-        </div>
-        </div>
+            <div class='circle'>
+              <input type='color' id='colors-border' class='colors-input-border'>
+              <label for='colors-border' class='colors-border'></label>
+          </div>
+          </div>
             </div>
           </div>
         </div>
@@ -125,11 +130,18 @@ function paint(e) {
   const canvas = document.querySelector("canvas");
   const colorInput = document.querySelector("#colors");
   const colorInputBorder = document.querySelector("#colors-border");
+  const labels = document.querySelectorAll("label");
+  labels.forEach((label) => {
+    if (label.getAttribute("for") === colorInput.id) {
+      label.style.backgroundColor = colorInput.value;
+    } else {
+      label.style.backgroundColor = colorInputBorder.value;
+    }
+  });
   let ctx = canvas.getContext("2d");
   let { offsetX: x, offsetY: y } = e;
   ctx.strokeStyle = colorInputBorder.value; //цвет границы
   ctx.fillStyle = colorInput.value;
-  console.log(colorInputBorder.value, colorInput.value);
   ctx.beginPath();
   ctx.roundRect(x - 7, y - 7, 7, 7, 3.5);
   ctx.stroke();

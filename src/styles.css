@@ -42,6 +42,9 @@ body {
 }
 
 .painting-container {
+  position: absolute;
+  z-index: 1;
+  top: 0;
   width: 100%;
   height: 100%;
   display: flex;
@@ -50,6 +53,7 @@ body {
 }
 
 .painting-block {
+  background-color: #fff;
   position: relative;
   width: 960px;
   height: 540px;
@@ -100,6 +104,7 @@ body {
   height: 85%;
   border-radius: 100%;
   cursor: pointer;
+  border: 1px solid black;
   background-color: black;
 }
 
@@ -113,6 +118,7 @@ body {
   height: 85%;
   border-radius: 100%;
   cursor: pointer;
+  border: 1px solid black;
   background-color: black;
 }
 
