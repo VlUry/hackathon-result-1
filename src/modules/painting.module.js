@@ -1,5 +1,5 @@
 import { Module } from "../core/module";
-import pancil from "../img/pancil.png";
+import pencil from "../img/pencil.png";
 
 export class PaintingModule extends Module {
   constructor(type, text) {
@@ -85,7 +85,7 @@ export class PaintingModule extends Module {
       const paintingContainer = document.createElement("div");
       paintingContainer.className = "painting-container";
       paintingContainer.innerHTML = `
-        <div class='painting-block' style="width: 80%; height: 60%; cursor: url('${pancil}'), auto;">
+        <div class='painting-block' style="width: 80%; height: 60%; cursor: url('${pencil}'), auto;">
         <canvas></canvas>
         
 
@@ -140,26 +140,22 @@ export class PaintingModule extends Module {
       this.#renderClearingButton();
       this.#renderCanvas();
 
-      document.body.addEventListener('auxclick', this.#onAuxClick.bind(this), {
-        once: true
-      })
+      document.body.addEventListener("auxclick", this.#onAuxClick.bind(this), {
+        once: true,
+      });
     }
   }
 
   #onAuxClick() {
     const container = document.querySelector(".painting-container");
     if (container) {
-      this.open = false
-      container.remove()
+      this.open = false;
+      container.remove();
     }
   }
 
   trigger() {
-    return this.promise(
-      this.#createPaintingBlock.bind(this),
-      0
-    )
-
+    return this.promise(this.#createPaintingBlock.bind(this), 0);
   }
 }
 

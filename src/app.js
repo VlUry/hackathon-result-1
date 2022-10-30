@@ -20,7 +20,7 @@ menu.add(
     "Всем привет!"
   ),
   new RainingCatsModule("raining-cats", "Создать дождь из котов", 15),
-  new PaintingModule('painting', 'Создать рисунок')
+  new PaintingModule("painting", "Создать рисунок")
 );
 
 // Формирование html для контекстного меню

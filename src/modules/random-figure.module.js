@@ -47,11 +47,7 @@ export class RandomFigureModule extends Module {
   }
 
   trigger() {
-    return this.promise(
-      this.#createRandomFigure.bind(this),
-      0
-    )
-
+    return this.promise(this.#createRandomFigure.bind(this), 0);
   }
 }
 
