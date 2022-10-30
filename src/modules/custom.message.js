@@ -8,17 +8,14 @@ export class CustomMessage extends Module {
 	}
 
 	trigger() {
-		//Логика того, что будет происходить при клике
+		const customMessage = document.createElement('div')
+		customMessage.className = 'message-custom';
+		customMessage.textContent = this.text;
 
-		const messagCustom = document.createElement('li')
-		messagCustom.className = 'menu-item';
-		messagCustom.textContent = this.text;
-
-		document.body.append(messagCustom);
-
+		document.body.append(customMessage);
 
 		setTimeout(function () {
-			document.querySelector('menu-item').remove();
+			customMessage.remove();
 		}, 5000);
 
 	}
