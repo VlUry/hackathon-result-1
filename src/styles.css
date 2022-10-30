@@ -42,6 +42,131 @@ body {
   background: #343434;
 }
 
+.painting-container {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.painting-block {
+  background-color: #fff;
+  position: relative;
+  border: 2px solid black;
+  border-radius: 7px;
+  box-shadow: 7px 7px 15px grey;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.painting-block-up {
+  z-index: 500;
+  background-color: #fff;
+  box-shadow: 7px -5px 15px grey;
+  border: 1px solid black;
+  border-bottom: none;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  position: absolute;
+  display: flex;
+  height: 41.07px;
+  width: calc(41.07 * 5px);
+  top: -43px;
+  left: 10px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.painting-el {
+  flex: 1;
+  align-items: center;
+  height: 100%;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.circle {
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colors {
+  width: 85%;
+  height: 85%;
+  border-radius: 100%;
+  cursor: pointer;
+  border: 1px solid black;
+  background-color: black;
+}
+
+.colors-input {
+  visibility: hidden;
+  position: absolute;
+}
+
+.colors-border {
+  width: 85%;
+  height: 85%;
+  border-radius: 100%;
+  cursor: pointer;
+  border: 1px solid black;
+  background-color: black;
+}
+
+.colors-input-border {
+  visibility: hidden;
+  position: absolute;
+}
+
+.close {
+  width: 85%;
+  height: 85%;
+  border-radius: 100%;
+}
+
+.close svg {
+  height: 100%;
+  width: 100%;
+}
+
+.apply {
+  width: 85%;
+  height: 85%;
+  border-radius: 100%;
+}
+
+.apply svg {
+  height: 100%;
+  width: 100%;
+}
+
+.clear {
+  width: 85%;
+  height: 85%;
+  border-radius: 100%;
+}
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background-color: purple;
+
 .menu .menu-item.unavailable {
   cursor: default;
   opacity: .5;

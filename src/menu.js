@@ -1,18 +1,21 @@
-import { Menu } from './core/menu'
+import { Menu } from "./core/menu";
 
 export class ContextMenu extends Menu {
   constructor(selector) {
-    super(selector)
+    super(selector);
 
     // Массив с модулями
-    this.modules = []
+    this.modules = [];
 
     // Слушатель клика правой кнопкой мыши на экран
-    document.body.addEventListener('contextmenu', this.onContextMenu.bind(this))
+    document.body.addEventListener(
+      "contextmenu",
+      this.onContextMenu.bind(this)
+    );
   }
 
   render() {
-    const doModulesExist = this.modules.length > 0
+    const doModulesExist = this.modules.length > 0;
 
     if (doModulesExist) {
       // Формирование html для модулей
@@ -23,54 +26,55 @@ export class ContextMenu extends Menu {
     }
 
     // Слушатель клика левой кнопкой мыши на контекстное меню
-    this.el.addEventListener('click',
-      this.onModulesClick.bind(this))
+    this.el.addEventListener("click", this.onModulesClick.bind(this));
   }
 
   open() {
-    this.el.classList.add('open')
+    this.el.classList.add("open");
   }
 
   close() {
-    this.el.classList.remove('open')
+    this.el.classList.remove("open");
   }
 
   add(...module) {
-    this.modules.push(...module)
+    this.modules.push(...module);
   }
 
   onContextMenu(event) {
-    event.preventDefault()
+    event.preventDefault();
 
-    this.open()
+    this.open();
 
     // Высота и ширина контекстного меню
-    const { height: menuHeight, width: menuWidth } = this.el.getBoundingClientRect()
+    const { height: menuHeight, width: menuWidth } =
+      this.el.getBoundingClientRect();
 
     // Высота и ширина экрана
-    const { innerHeight, innerWidth } = event.view
+    const { innerHeight, innerWidth } = event.view;
 
     // Координаты, по которым был совершен клик
-    const { clientX, clientY } = event
+    const { clientX, clientY } = event;
 
     // Вычисление координат для расположения контекстного меню относительно экрана
-    let styleLeft = clientX
-    let styleTop = clientY
+    let styleLeft = clientX;
+    let styleTop = clientY;
 
     if (innerHeight - clientY < menuHeight) {
-      styleTop -= menuHeight
+      styleTop -= menuHeight;
     }
 
     if (innerWidth - clientX < menuWidth) {
-      styleLeft -= menuWidth
+      styleLeft -= menuWidth;
     }
 
-    this.el.style.left = styleLeft + 'px'
-    this.el.style.top = styleTop + 'px'
+    this.el.style.left = styleLeft + "px";
+    this.el.style.top = styleTop + "px";
   }
 
   onModulesClick(event) {
-    const { target } = event
+    this.close();
+    const { target } = event;
 
     const isMenuItem = target.classList.contains('menu-item')
     const isAvailable = !target.classList.contains('unavailable')

@@ -6,8 +6,16 @@ export class RandomFigureModule extends Module {
     super(type, text);
   }
 
+  #randomFigureCheck() {
+    const randomFigure = document.querySelector("#random-figure");
+    if (randomFigure) {
+      randomFigure.animate([{ opacity: "1" }, { opacity: "0" }], {
+        duration: 800,
+      });
+      setTimeout(() => randomFigure.remove(), 750);
+    }
+  }
   #createRandomFigure() {
-    randomFigureCheck();
     const randomFigure = document.createElement("div");
     randomFigure.style.position = "absolute";
     const { innerWidth: windWidth, innerHeight: windHeight } = window;
@@ -15,7 +23,7 @@ export class RandomFigureModule extends Module {
     const randomFigureHeight = random(30, windHeight);
     randomFigure.style.width = `${randomFigureWidth}px`;
     randomFigure.style.height = `${randomFigureHeight}px`;
-    randomFigure.style.borderRadius = "15px";
+
     randomFigure.style.backgroundColor = "#FA8072";
     randomFigure.style.clipPath = makeClipPath();
     randomFigure.id = "random-figure";
@@ -28,6 +36,14 @@ export class RandomFigureModule extends Module {
     randomFigure.animate([{ opacity: "0" }, { opacity: "1" }], {
       duration: 800,
     });
+
+    document.addEventListener(
+      "auxclick",
+      () => {
+        this.#randomFigureCheck();
+      },
+      { once: true }
+    );
   }
 
   trigger() {
@@ -54,11 +70,4 @@ function makeClipPath() {
   }
   clipPathStr += ")";
   return clipPathStr;
-}
-
-function randomFigureCheck() {
-  const randomFigure = document.querySelector("#random-figure");
-  if (randomFigure) {
-    randomFigure.remove();
-  }
 }
