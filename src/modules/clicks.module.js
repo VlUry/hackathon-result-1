@@ -1,4 +1,4 @@
-import { Module } from '../core/module'
+import { Module } from "../core/module";
 
 export class ClicksModule extends Module {
   constructor(type, text, time = 5) {
@@ -87,9 +87,6 @@ export class ClicksModule extends Module {
   }
 
   trigger() {
-    return this.promise(
-      this.#counter.bind(this),
-      1000 * this.time
-    )
+    return this.promise(this.#counter.bind(this), 1000 * this.time);
   }
 }

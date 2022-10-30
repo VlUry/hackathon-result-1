@@ -2,15 +2,15 @@ import { Module } from "../core/module";
 
 export class CustomMessageModule extends Module {
   constructor(type, text, messageText) {
-    super(type, text)
-    this.messageText = messageText
+    super(type, text);
+    this.messageText = messageText;
 
-    this.time = 5000
+    this.time = 5000;
   }
 
   createMessage() {
-    const customMessage = document.createElement('div')
-    customMessage.className = 'custom-message';
+    const customMessage = document.createElement("div");
+    customMessage.className = "custom-message";
     customMessage.textContent = this.messageText;
 
     document.body.append(customMessage);
@@ -21,9 +21,6 @@ export class CustomMessageModule extends Module {
   }
 
   trigger() {
-    return this.promise(
-      this.createMessage.bind(this),
-      this.time
-    )
+    return this.promise(this.createMessage.bind(this), this.time);
   }
 }
