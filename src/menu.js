@@ -19,10 +19,10 @@ export class ContextMenu extends Menu {
 
     if (doModulesExist) {
       // Формирование html для модулей
-      this.modules.forEach((module) => {
-        const menuItem = module.toHTML();
-        this.el.insertAdjacentHTML("beforeend", menuItem);
-      });
+      this.modules.forEach(module => {
+        const menuItem = module.el
+        this.el.insertAdjacentElement('beforeend', menuItem)
+      })
     }
 
     // Слушатель клика левой кнопкой мыши на контекстное меню
@@ -76,14 +76,23 @@ export class ContextMenu extends Menu {
     this.close();
     const { target } = event;
 
-    const isMenuItem = target.classList.contains("menu-item");
-    if (isMenuItem) {
-      const { type } = event.target.dataset;
+    const isMenuItem = target.classList.contains('menu-item')
+    const isAvailable = !target.classList.contains('unavailable')
+
+    if (isMenuItem && isAvailable) {
+      const { type } = event.target.dataset
 
       // Поиск нужного модуля по атрибуту data-type
       // Вызов у модуля метода с логикой его действия
-      const module = this.modules.find((module) => module.type === type);
-      module.trigger();
+      const module = this.modules
+        .find(module => module.type === type)
+
+      // Снятие доступа с модуля и возвращение доступа после завершения действия
+      module.toggleAvailability()
+      module.trigger()
+        .finally(() => module.toggleAvailability())
+
+      this.close()
     }
   }
 }
